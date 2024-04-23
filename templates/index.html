@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPW</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Bond Purcahse Website</h1>
+    </header>
+
+    <main>
+
+        <form method="GET" action="/search" class="top-form">
+            <label for="table">Search Table:</label>
+            <select name="table" id="table" onchange="updateColumns()">
+                <option class="option" value="purchase">Purchase</option>
+                <option value="redemption">Redemption</option>
+            </select>
+
+            <label for="column">Search by:</label>
+            <select name="column" id="column">
+                <!-- This will be populated dynamically by JavaScript -->
+            </select>
+
+            <input type="text" name="query" placeholder="Enter your search query" required>
+
+            <button type="submit" class="button">Search</button>
+        </form>
+
+
+        <section class="analysis-section">
+
+
+            <h2>Bond Purchase Analysis</h2>
+            <div class="grid">
+
+                <div class="analysis-option">
+                    <h3>By Company/Individual</h3>
+                    <!-- ------------------------------------------- -->
+                    <form method="post" class="search-from-class" action="/company">
+                        <!-- Search bar for filtering the dropdown -->
+                        <input type="text" name="comp" id="search-input" placeholder="Search company..." />
+                        <!-- Dropdown menu for Company -->
+                        <select name="comp_name" id="donation-company">
+                            {% for company in companies %}
+                                <option value="{{ company[0] }}">{{ company[0] }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- Submit button -->
+                        <button type="submit" class="button-b">Search</button>
+                    </form>
+                </div>
+
+
+                <div class="analysis-option">
+                    <h3>By Political Party</h3>
+                    <form  method="GET" class="search-from-class" action="/party">
+                        <!-- Search bar for filtering the dropdown -->
+                        <input type="text" name="party" id="search-input" placeholder="Search party..." />
+
+                        <!-- Dropdown menu for Company -->
+                        <select name="party" id="donation-company">
+                            <option value="">Select Party</option>
+                            <!-- Dynamically populated options -->
+                            {% for party in parties %}
+                                <option value="{{ party.party_name }}">{{ party.party_name }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="button-b">Search</button>
+                    </form>
+                </div>
+
+                <div class="analysis-option">
+                    <h3>Party Donations by Company</h3>
+                    <form method="GET" class="search-from-class" action="/company">
+                        <input type="text" name="comp" id="search-input" placeholder="Search company..." />
+                        <!-- Dropdown menu for Company -->
+                        <select id="donation-company">
+                            <option value="">Select Company</option>
+                            {% for company in companies %}
+                                <option value="{{ company[0] }}">{{ company[0] }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- Search bar for filtering the dropdown -->
+
+
+                        <!-- Submit button -->
+                        <button type="submit" class="button-b">Search</button>
+                    </form>
+                    <!-- --------------------------- -->
+                    <div class="analysis-result">
+                        <ul id="party-donations">
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="analysis-option">
+                    <h3>Company Donations by Party</h3>
+                    <form  class="search-from-class" method="GET" action="/party_name">
+                        <!-- Search bar for filtering the dropdown -->
+                        <input type="text" name="party_name" id="search-input" placeholder="Search party..." />
+
+                        <!-- Dropdown menu for Company -->
+                        <select id="donation-company">
+                            <option value="">Select Party</option>
+                            <!-- Dynamically populated options -->
+                            {% for party in parties %}
+                            <option value="{{ party.party_name }}">{{ party.party_name }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="button-b">Search</button>
+                    </form>
+                    <div class="analysis-result">
+                        <ul id="company-donations">
+                        </ul>
+                    </div>
+                </div>
+
+             
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+
+</html>

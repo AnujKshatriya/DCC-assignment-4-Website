@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+   
+</head>
+
+<body>
+    <h1>Purchase Records</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Reference No.</th>
+                <th>Journal Data</th>
+                <th>Purchase Date</th>
+                <th>Expiry Date</th>
+                <th>Purchaser Name</th>
+                <th>Prefix</th>
+                <th>Bond Number</th>
+                <th>Denomination</th>
+                <th>Branch Code</th>
+                <th>Issue Teller</th>
+                <th>Status</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in purchase_results %}
+            <tr>
+                <td>{{ result.sno }}</td>
+                <td>{{ result.reference_no }}</td>
+                <td>{{ result.journal_data }}</td>
+                <td>{{ result.purchase_date }}</td>
+                <td>{{ result.expiry_date }}</td>
+                <td>{{ result.purchaser_name }}</td>
+                <td>{{ result.prefix }}</td>
+                <td>{{ result.bond_no }}</td>
+                <td>{{ result.denominations }}</td>
+                <td>{{ result.branch_code }}</td>
+                <td>{{ result.issue_teller }}</td>
+                <td>{{ result.status }}</td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Redemption Records</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Encashment Date</th>
+                <th>Party Name</th>
+                <th>Account No.</th>
+                <th>Prefix</th>
+                <th>Bond Number</th>
+                <th>Denomination</th>
+                <th>Branch Code</th>
+                <th>Pay Teller</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in redemption_results %}
+            <tr>
+                <td>{{ result.sno }}</td>
+                <td>{{ result.encashment_date }}</td>
+                <td>{{ result.party_name }}</td>
+                <td>{{ result.account_no }}</td>
+                <td>{{ result.prefix }}</td>
+                <td>{{ result.bond_no }}</td>
+                <td>{{ result.denominations }}</td>
+                <td>{{ result.branch_code }}</td>
+                <td>{{ result.pay_teller }}</td>
+                <!-- Add more table cells for other columns as needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

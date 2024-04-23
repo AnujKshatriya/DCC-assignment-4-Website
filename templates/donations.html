@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Donations by Party {{ party }}</title>
+</head>
+
+<body>
+    <h1>Company Donations by Party</h1>
+
+    <div class="analysis-option">
+       
+        <div class="analysis-result">
+            <ul id="company-donations">
+                {% for company, amount in donations.items() %}
+                <li>{{ company }}: {{ amount }}</li>
+                {% endfor %}
+                <li>Total Donation Amount: {{ sum }}</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

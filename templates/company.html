@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bond Purchase Analysis for {{ comp_name }}</title>
+</head>
+<body>
+    <h1>Bond Purchase Analysis for {{ comp_name }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Total Number of Bonds</th>
+                <th>Total Value of Bonds</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for year, totals in year_totals.items() %}
+            <tr>
+                <td>{{ year }}</td>
+                <td>{{ totals.total_count }}</td>
+                <td>{{ totals.total_sum }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
